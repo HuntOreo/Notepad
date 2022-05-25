@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const axios = require('axios');
+const mongoose = require('mongoose')
+
+//mongoose Models 
+const User = require('./schemas/users.schema')
 
 //.env middleware
 require('dotenv').config()
@@ -8,17 +11,19 @@ require('dotenv').config()
 const uri = process.env.URI
 
 
-
 //connect to mongo database
+const connectMongo = async () => {
+    await mongoose.connect(process.env.URI)
+}
 
 
-
-app.get('/', async (req, res) => {
-    await getCollection('Test')
+app.get('/', (req, res) => {
     res.send('Welcome')
 })
 
-app.get('/users', (req, res) => {
+app.get('/users', async (req, res) => {
+    const user = await User.find()
+    console.log(user)
     res.send('Users')
 })
 
