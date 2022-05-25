@@ -10,12 +10,10 @@ require('dotenv').config()
 
 const uri = process.env.URI
 
-
 //connect to mongo database
-const connectMongo = async () => {
-    await mongoose.connect(process.env.URI)
-}
-
+mongoose.connect(process.env.URI, () => {
+        console.log('Connected to MongoDB')
+    })
 
 app.get('/', (req, res) => {
     res.send('Welcome')
