@@ -9,8 +9,9 @@ router.get('/users', async (req, res) => {
     res.json(users)
 })
 
-router.get('/notepads', (req, res) => {
-    res.send('Notepads')
+router.get('/notepads', async (req, res) => {
+    const notepads = await Notepad.find()
+    res.json(notepads)
 })
 
 //get by id

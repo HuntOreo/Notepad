@@ -9,6 +9,10 @@ const Notepad = mongoose.Schema({
         type: String,
         required: true
     },
+    padIDs: {
+        type: Array,
+        default: []
+    },
     date: {
         type: Date, 
         default: Date.now
