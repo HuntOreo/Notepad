@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 //Middleware
+app.use(cors());
 app.use(bodyParser.json())
 require('dotenv').config() //.env middleware to read environment variables.
 const uri = process.env.URI //Reads uri from .env 
