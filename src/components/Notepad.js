@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import React from 'react'
 
 const Notepad = () => {
     const params = useParams()
