@@ -10,10 +10,10 @@ const Home = ({ user, myNotepads }) => {
         <div className='wrapper'>
             <Container>
                 <Row>
-                <Col>
-                    <h1>Hello {user.name}</h1>
-                    <Notepads notepads={myNotepads} />
-                </Col>
+                    <Col>
+                        <h1>Hello {user.name}</h1>
+                        <Notepads notepads={myNotepads} />
+                    </Col>
                 </Row>
             </Container>
         </div>
