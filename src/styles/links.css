@@ -29,7 +29,7 @@
 
 .link::before {
     content: '';
-    background-color: rgb(17, 95, 172);
+    background-color: #ACCEF7;
     position: absolute;
     left: 0;
     bottom: 0;
