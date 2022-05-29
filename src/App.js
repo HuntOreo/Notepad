@@ -27,7 +27,7 @@ function App() {
       try {
 
         const notepads = await axios.get('/api/notepads')
-        setMyNotepads([myNotepads, ...notepads.data])
+        setMyNotepads([...notepads.data])
 
       } catch(error) {
         console.log(error)

@@ -5,14 +5,17 @@ import Notepads from './Notepads';
 
 const Home = ({ user, myNotepads }) => {
     return (
-        <Container>
-            <Row>
-            <Col>
-                <h1 className='col'>Hello {user.name}</h1>
-                <Notepads notepads={myNotepads} />
-            </Col>
-            </Row>
-        </Container>
+        
+        <div className='wrapper'>
+            <Container>
+                <Row>
+                <Col>
+                    <h1>Hello {user.name}</h1>
+                    <Notepads notepads={myNotepads} />
+                </Col>
+                </Row>
+            </Container>
+        </div>
     )
 }
 

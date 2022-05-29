@@ -1,15 +1,17 @@
+import Row from "react-bootstrap/esm/Row"
 import { Link } from "react-router-dom"
+import "../styles/links.css"
 
 const Notepads = ({ notepads }) => {
 
     return(
         notepads.map(notepad => {
             return (
-                <Link key={String(notepad._id)} to={`/notepads/notepad/${notepad._id}`}>
-                    <div>
-                        <h3 >{notepad.title}</h3>
-                    </div>
-                </Link>
+                <Row className="link-hover" >
+                    <Link className="link" key={String(notepad._id)} to={`/notepads/notepad/${notepad._id}`}>
+                            <h3 >{notepad.title}</h3>
+                    </Link>
+                </Row>
             )
         })
     )  
