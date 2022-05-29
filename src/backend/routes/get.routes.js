@@ -38,6 +38,30 @@ router.get('/notes', async (req, res) => {
 
 })
 
+//get user created notepads
+router.get('/:user/notepads', async (req, res) => {
+    try {
+        const notepads = await Notepad.find({
+            userID: req.params.user
+        })
+        res.json(notepads)
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+//get notes attached to notepad
+router.get('/notepads/:notepad/notes', async (req, res) => {
+    try {
+        const notes = await Note.find({
+            notepadID: req.params.notepad
+        })
+        res.json(notes)
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 //get by id
 router.get('/users/user/:id', async (req, res) => {
     try {
