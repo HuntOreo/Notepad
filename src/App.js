@@ -1,10 +1,10 @@
 import './App.css';
 import axios from 'axios'
 import { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Notepads from './components/Notepads';
+import { Routes, Route } from 'react-router-dom'
+
+import Notepad from './components/Notepad';
+import Home from './components/Home'
 
 
 function App() {
@@ -40,14 +40,10 @@ function App() {
 
   return (
     <div className="App">
-      <Container>
-      <Row>
-        <Col>
-          <h1 className='col'>Hello {user.name}</h1>
-          <Notepads notepads={myNotepads} />
-        </Col>
-      </Row>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Home user={user} myNotepads={myNotepads}/>} />
+        <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
+      </Routes>
     </div>
   );
 }
