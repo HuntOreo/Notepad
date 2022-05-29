@@ -8,8 +8,8 @@ const Notepads = ({ notepads }) => {
     return(
         notepads.map(notepad => {
             return (
-                <Row className="link-hover" >
-                    <Link className="link" key={String(notepad._id)} to={`/notepads/notepad/${notepad._id}`}>
+                <Row className="link-hover" key={String(notepad._id)} >
+                    <Link className="link" to={`/notepads/notepad/${notepad._id}`}>
                             <h3 >{notepad.title}</h3>
                     </Link>
                 </Row>
