@@ -1,28 +1,72 @@
 const express = require('express')
 const router = express.Router()
 
+//Mongoose models
 const User = require('../schemas/users.schema')
 const Notepad = require('../schemas/notepads.schema')
+const Note = require('../schemas/notes.schema')
 
+
+//get all
 router.get('/users', async (req, res) => {
-    const users = await User.find()
-    res.json(users)
+    try {
+        const users = await User.find()
+        res.json(users)
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 
 router.get('/notepads', async (req, res) => {
-    const notepads = await Notepad.find()
-    res.json(notepads)
+    try {
+        const notepads = await Notepad.find()
+        res.json(notepads)
+    } catch (error) {
+        console.log(error)
+    }
+    
+})
+
+router.get('/notes', async (req, res) => {
+    try {
+        const notes = await Note.find()
+        res.json(notes)
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 //get by id
 router.get('/users/user/:id', async (req, res) => {
-    const user = await User.findById(req.params.id)
-    res.json(user)
+    try {
+        const user = await User.findById(req.params.id)
+        res.json(user)    
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
-router.get('/notepads/notepad/:id', async(req, res) => {
-    const notepad = await Notepad.findById(req.params.id)
-    res.json(notepad)
+router.get('/notepads/notepad/:id', async (req, res) => {
+    try {
+        const notepad = await Notepad.findById(req.params.id)
+        res.json(notepad)  
+    } catch (error) {
+        console.log(error)
+    }
+    
+})
+
+router.get('/notes/note/:id', async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id)
+        res.json(note)
+    } catch (error) {
+        console.log(error)
+    }
+   
 })
 
 module.exports = router

@@ -4,6 +4,7 @@ const router = express.Router()
 //mongoose Models 
 const User = require('../schemas/users.schema')
 const Notepad = require('../schemas/notepads.schema')
+const Note = require('../schemas/notes.schema')
 
 router.post('/user', async (req, res) => {
    const user = new User({
@@ -35,5 +36,20 @@ router.post('/notepad', async (req, res) => {
     }
      
  })
+
+router.post('/note', async (req, res) => {
+    const note = new Note({
+        notepadID: req.body.notepadID,
+        body: req.body.body,
+        color: req.body.color !== undefined ? req.body.color : "#EAF3FA"
+    })
+    
+    try {
+        const data = await note.save()
+        res.json(data)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router
