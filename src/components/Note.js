@@ -11,12 +11,16 @@ const Note = ({ notepadID }) => {
 
     useEffect(() => {
         const getNotes = async (id) => {
-            const grabbedNotes = await axios.get("/api/notes")
+            
+            if(id === undefined) return null
+
+            const grabbedNotes = await axios.get(`/api/notepads/${id}/notes`)
             setNotes(grabbedNotes.data)
+           
         }
 
         getNotes(notepadID)
-    }, [])
+    }, [notepadID])
 
     return (
         notes.map((note) => {
