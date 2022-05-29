@@ -4,8 +4,11 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
+//Components
 import Notepad from './components/Notepad';
 import Home from './components/Home'
+import Login from './components/Login'
+
 
 
 function App() {
@@ -50,7 +53,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home user={user} myNotepads={myNotepads}/>} />
+        <Route path="/" element={user._id !== undefined ? <Home user={user} myNotepads={myNotepads}/> : <Login />} />
         <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
       </Routes>
     </div>
