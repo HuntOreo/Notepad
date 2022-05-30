@@ -26,7 +26,6 @@ const Notepads = ({ notepads, flag, setFlag }) => {
                         )
                     })}
                 </Row>
-           
             </Container>
         </div>
     )  

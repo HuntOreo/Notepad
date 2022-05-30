@@ -1,5 +1,9 @@
+.notesWrap {
+    margin: 10px !important;
+}
+
 .note {
-    max-width: 300px;
+    max-width: 300px !important;
     min-height: 300px;
     margin: 25px auto;
     padding: 10px;

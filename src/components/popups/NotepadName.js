@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
-import '../styles/addNote.css'
+import '../../styles/addNotepad.css'
+import '../../styles/popup.css'
 
 const NotepadName = ({ flag, setFlag, myNotepads, setMyNotepads, user }) => {
 
@@ -17,8 +18,10 @@ const NotepadName = ({ flag, setFlag, myNotepads, setMyNotepads, user }) => {
     }
 
     return (
-        <div className="addNote pop-up" style={{ 
+        <div className="addNotepad pop-up" style={{ 
                 visibility: flag ? "visible" : "hidden",
+                opacity: flag ? "100%" : "0",
+                transitionDuration: "0.2s"
             }}>
             <h3>Notepad Name</h3>
             <input onKeyDown={keyPress} type="text" placeholder='Notepad...'/>

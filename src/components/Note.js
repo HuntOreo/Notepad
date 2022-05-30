@@ -5,9 +5,7 @@ import { Row } from "react-bootstrap"
 import "../styles/note.css"
 
 
-const Note = ({ notepadID }) => {
-
-    const [ notes, setNotes ] = useState([])
+const Note = ({ notepadID, notes, setNotes }) => {
 
     useEffect(() => {
         const getNotes = async (id) => {
@@ -25,11 +23,11 @@ const Note = ({ notepadID }) => {
     return (
         notes.map((note) => {
             return (
-                <Row className="note" key={note._id} style={{
+                <div className="note" key={note._id} style={{
                     backgroundColor: note.color
                 }}>
                     <p>{note.body}</p>
-                </Row>
+                </div>
             )
         })
     )
