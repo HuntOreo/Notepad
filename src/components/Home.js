@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Notepads from './Notepads';
 
-const Home = ({ user, myNotepads }) => {
+const Home = ({ user, myNotepads, notepadNameFlag, setNotepadNameFlag }) => {
     return (
         
         <div className='wrapper'>
@@ -12,7 +12,7 @@ const Home = ({ user, myNotepads }) => {
                 <Row>
                     <Col>
                         <h1>Hello {user.name}</h1>
-                        <Notepads notepads={myNotepads} />
+                        <Notepads notepads={myNotepads} notepadNameFlag={notepadNameFlag} setNotepadNameFlag={setNotepadNameFlag} />
                     </Col>
                 </Row>
             </Container>

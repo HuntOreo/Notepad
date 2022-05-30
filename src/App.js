@@ -1,4 +1,5 @@
 import './App.css';
+import './styles/overlay.css'
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
@@ -8,12 +9,13 @@ import { Routes, Route } from 'react-router-dom'
 import Notepad from './components/Notepad';
 import Home from './components/Home'
 import Login from './components/Login'
-
+import NotepadName from './components/NotepadName';
 
 
 function App() {
   const [ user, setUser ] = useState({})
   const [ myNotepads, setMyNotepads ] = useState([])
+  const [ notepadNameFlag, setNotepadNameFlag ] = useState(false)
 
   //login user IF user is not logged in
   useEffect(() => {
@@ -50,12 +52,20 @@ function App() {
     getNotepads(user)
   }, [user])
 
+  const onClick = (e) => {
+    setNotepadNameFlag(false)
+  }
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={user._id !== undefined ? <Home user={user} myNotepads={myNotepads}/> : <Login />} />
+        <Route path="/" element={user._id !== undefined ? <Home user={user} myNotepads={myNotepads} notepadNameFlag={notepadNameFlag} setNotepadNameFlag={setNotepadNameFlag}/> : <Login />} />
         <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
       </Routes>
+      <NotepadName flag={notepadNameFlag}/>
+      <div onClick={onClick} className="overlay pop-up" style={
+          { visibility: notepadNameFlag ? "visible" : "hidden"}}>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.addNote {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 25%;
+    min-height: fit-content;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    position: absolute;
+    top: 10%;
+    background-color: aliceblue;
+    z-index: 100;
+}
+
+.addNote input {
+    margin: 10px;
+}

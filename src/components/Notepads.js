@@ -4,11 +4,15 @@ import "../styles/links.css"
 import "../styles/buttons.css"
 import { Container, Button, Row, Col } from "react-bootstrap"
 
-const Notepads = ({ notepads }) => {
+const Notepads = ({ notepads, notepadNameFlag, setNotepadNameFlag }) => {
+
+    const onClick = () => {
+        setNotepadNameFlag(!notepadNameFlag)
+    }
 
     return(
         <div>
-            <Button className="addNotepadBtn">Add Notepad</Button>
+            <Button onClick={onClick} className="addNotepadBtn">Add Notepad</Button>
 
             <Container>
                 <Row className="rowWrap">
