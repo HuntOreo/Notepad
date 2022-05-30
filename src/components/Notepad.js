@@ -20,14 +20,12 @@ const Notepad = () => {
     }, [])
 
     return(
-        <div className='wrapper'>
             <Container>
                 <Col className="notes">
                     <h1>{notepad.title}</h1>
                     <Note notepadID={notepad._id} />
                 </Col>
             </Container>
-        </div>
         
     )      
 }
