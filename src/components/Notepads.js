@@ -4,10 +4,10 @@ import "../styles/links.css"
 import "../styles/buttons.css"
 import { Container, Button, Row, Col } from "react-bootstrap"
 
-const Notepads = ({ notepads, notepadNameFlag, setNotepadNameFlag }) => {
+const Notepads = ({ notepads, flag, setFlag }) => {
 
     const onClick = () => {
-        setNotepadNameFlag(!notepadNameFlag)
+        setFlag(!flag)
     }
 
     return(

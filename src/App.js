@@ -59,10 +59,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={user._id !== undefined ? <Home user={user} myNotepads={myNotepads} notepadNameFlag={notepadNameFlag} setNotepadNameFlag={setNotepadNameFlag}/> : <Login />} />
+        <Route path="/" element={user._id !== undefined ? <Home user={user} myNotepads={myNotepads} flag={notepadNameFlag} setFlag={setNotepadNameFlag}/> : <Login />} />
         <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
       </Routes>
-      <NotepadName flag={notepadNameFlag}/>
+      <NotepadName flag={notepadNameFlag} setFlag={setNotepadNameFlag} user={user._id} setMyNotepads={setMyNotepads} myNotepads={myNotepads}/>
+
+      {/* overlay */}
       <div onClick={onClick} className="overlay pop-up" style={
           { visibility: notepadNameFlag ? "visible" : "hidden"}}>
       </div>
