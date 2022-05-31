@@ -14,9 +14,11 @@ const uri = process.env.URI //Reads uri from .env
 const getRoutes = require('./routes/get.routes')
 const postRoutes = require('./routes/post.routes')
 const deleteRoutes = require('./routes/delete.routes')
+const updateRoutes = require('./routes/update.routes')
 app.use('/api', getRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/delete', deleteRoutes)
+app.use('/api/update', updateRoutes)
 
 //connect to mongo database
 mongoose.connect(uri, () => {
