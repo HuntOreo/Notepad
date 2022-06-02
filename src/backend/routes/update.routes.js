@@ -6,22 +6,22 @@ const Notepad = require('../schemas/notepads.schema')
 const Note = require('../schemas/notes.schema')
 
 router.put('/users/:id', async (req, res) => {
-    await User.findByIdAndUpdate(req.params.id, {
+    const user = await User.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         password: req.body.password
     })
 
-    res.send('User Updated')
+    res.json(user)
 })
 
 router.put('/notepads/:id', async (req, res) => {
-    await Notepad.findByIdAndUpdate(req.params.id, {
+    const notepad = await Notepad.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         padIDs: req.body.padIDs,
         favorite: req.body.favorite
     })
 
-    res.send('Notepad Updated')
+    res.json(notepad)
 })
 
 router.put('/notes/:id', async (req, res) => {
@@ -31,7 +31,8 @@ router.put('/notes/:id', async (req, res) => {
         color: req.body.color
     })
     
-    res.send('Note updated')
+    const note = await Note.findById(req.params.id)
+    res.json(note)
 })
 
 

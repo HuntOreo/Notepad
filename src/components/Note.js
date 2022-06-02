@@ -1,10 +1,10 @@
 import React from "react"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import axios from "axios"
 import "../styles/note.css"
 
 
-const Note = ({ notepadID, notes, setNotes, setNote }) => {
+const Note = ({ notepadID, notes, setNotes, setNote, setColor, setNewFlag, setBody }) => {
 
     useEffect(() => {
         const getNotes = async (id) => {
@@ -24,15 +24,23 @@ const Note = ({ notepadID, notes, setNotes, setNote }) => {
 
         if (currentlySelected === null) {
             e.target.className = "current"
-            const selectedNote = await axios.get(`/api/notes/note/${thisNote}`)
+            
+            const { data } = await axios.get(`/api/notes/note/${thisNote}`)
 
-            setNote(selectedNote.data)
+            setBody(data.body)
+            setColor(data.color)
+            setNote(data)
+            setNewFlag(false)
         } else {
             currentlySelected.classList.toggle('current')
             e.target.classList = "current"
-            const selectedNote = await axios.get(`/api/notes/note/${thisNote}`)
 
-            setNote(selectedNote.data)
+            const { data }= await axios.get(`/api/notes/note/${thisNote}`)
+
+            setBody(data.body)
+            setColor(data.color)
+            setNote(data)
+            setNewFlag(false)
         }
     }
 

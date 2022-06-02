@@ -3,3 +3,11 @@
 
     ;
 }
+
+.note {
+    margin: 0;
+}
+
+.note p {
+    margin: 0 !important;
+}
