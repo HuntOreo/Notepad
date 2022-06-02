@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Container, Col, Row } from 'react-bootstrap'
 import Notepads from './Notepads';
 import NotepadName from '../components/popups/NotepadName';
 
@@ -33,14 +33,14 @@ const Home = ({ user, flag, setFlag }) => {
     return (
         
         <div className='wrapper'>
-            <Container>
-                <Row>
-                    <Col>
-                        <h1>Hello {user.name}</h1>
+            <div>
+                <div className='row'>
+                    <div className='col'>
+                        <p>Hello {user.name}</p>
                         <Notepads notepads={myNotepads} flag={flag} setFlag={setFlag} />
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
             <NotepadName flag={flag} setFlag={setFlag} user={user._id} setMyNotepads={setMyNotepads} myNotepads={myNotepads}/>
             {/* overlay */}
             <div onClick={onClick} className="overlay" style={

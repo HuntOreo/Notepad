@@ -1,18 +1,5 @@
-.notesWrap {
-    margin: 10px !important;
-}
+.notes {
+    height: 100%;
 
-.note {
-    max-width: 300px !important;
-    min-height: 300px;
-    margin: 25px auto;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px -5px gray;
-    border: 1px solid black;
-}
-
-.note p {
-    text-align: left;
-    margin: 0;
+    ;
 }

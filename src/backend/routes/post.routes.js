@@ -7,17 +7,17 @@ const Notepad = require('../schemas/notepads.schema')
 const Note = require('../schemas/notes.schema')
 
 router.post('/user', async (req, res) => {
-   const user = new User({
-       name: req.body.name,
-       password: req.body.password
-   })
+    const user = new User({
+        name: req.body.name,
+        password: req.body.password
+    })
 
-   try {
-       const data = await user.save()
-       res.json(data)
-   } catch(err) {
-       res.send(err)
-   }
+    try {
+        const data = await user.save()
+        res.json(data)
+    } catch(err) {
+        res.send(err)
+    }
     
 })
 
@@ -27,15 +27,14 @@ router.post('/notepad', async (req, res) => {
         userID: req.body.userID,
 
     })
- 
+
     try {
         const data = await notepad.save()
         res.json(data)
     } catch(err) {
         res.send(err)
     }
-     
- })
+})
 
 router.post('/note', async (req, res) => {
     const note = new Note({

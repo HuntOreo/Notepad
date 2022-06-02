@@ -1,17 +1,17 @@
 import axios from 'axios'
-import { React, useEffect, useState } from "react"
+import React from 'react'
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Container, Col, Button, Row } from 'react-bootstrap'
 import Note from './Note'
-import '../styles/note.css'
-import '../styles/overlay.css'
-import NotePopup from './popups/NotePopup'
+import '../styles/flex.css'
 
 const Notepad = () => {
+
     const params = useParams()
+    
     const [ notepad, setNotepad ] = useState({})
-    const [ flag, setFlag ] = useState(false)
     const [ notes, setNotes ] = useState([])
+    const [ note, setNote ] = useState({})
 
     useEffect(() => {
         const getNotepad = async () => {
@@ -22,30 +22,36 @@ const Notepad = () => {
         getNotepad()
     }, [])
 
-    const toggleOverlay = () => {
-        setFlag(!flag)
+    const addNote = async() => {
+        const newNote = await axios.post(`/api/post/note`, {
+            notepadID: params.id,
+            body: note
+        })
+        setNotes([...notes, newNote.data])
     }
 
     return(
-        <div>
-            <Container>
-                <Col className="notes">
-                    <h1>{notepad.title}</h1>
-                    <Button onClick={toggleOverlay}>Add Note</Button>
-                    <Row className='notesWrap'>
-                        <Note notepadID={notepad._id} notes={notes} setNotes={setNotes} />
-                    </Row>
-                </Col>
-            </Container>
-            <NotePopup flag={flag} notepad={notepad._id} notes={notes} setNotes={setNotes}/>
+        <div className='notes'>
+            <div className='container'>
+                <div className='col-main'>
+                    <div className='row-1'>
+                        <h3>{notepad.title}</h3>
+                    </div>
 
-            {/* overlay */}
-            <div onClick={toggleOverlay} className="overlay" style={
-                { visibility: flag ? "visible" : "hidden",
-                    opacity: flag ? "50%" : "0",
-                    transitionDuration: "0.2s",
-                    width: "100%",
-                    height: "100%" }}>
+                    <div className='row-2'>
+                        <div className='col-1'>
+                            <Note notepadID={notepad._id} notes={notes} setNotes={setNotes} setNote={setNote} />
+                        </div>
+                        <div className='col-2'>
+                            <div className='addNoteBody'>
+                                <div className='noteOptions'>
+                                    <button onClick={addNote}>add</button>
+                                </div>
+                                <textarea onInput={(e) => setNote(e.target.value)} defaultValue={note.body}></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         

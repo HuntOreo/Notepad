@@ -90,7 +90,6 @@ router.get('/notes/note/:id', async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-   
 })
 
 module.exports = router

@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import "../styles/links.css"
 import "../styles/buttons.css"
-import { Container, Button, Row, Col } from "react-bootstrap"
 
 const Notepads = ({ notepads, flag, setFlag }) => {
 
@@ -12,21 +11,21 @@ const Notepads = ({ notepads, flag, setFlag }) => {
 
     return(
         <div>
-            <Button onClick={onClick} className="addNotepadBtn">Add Notepad</Button>
+            <button onClick={onClick} className="addNotepadBtn">Add Notepad</button>
 
-            <Container>
-                <Row className="rowWrap">
+            <div className='container'>
+                <div className="rowWrap row">
                     {notepads.map(notepad => {
                         return (
-                            <Col lg="auto" className="link-hover" key={String(notepad._id)} >
+                            <div lg="auto" className="link-hover col" key={String(notepad._id)} >
                                 <Link className="link" to={`/notepads/notepad/${notepad._id}`}>
                                         <h3 >{notepad.title}</h3>
                                 </Link>
-                            </Col>
+                            </div>
                         )
                     })}
-                </Row>
-            </Container>
+                </div>
+            </div>
         </div>
     )  
     

@@ -11,8 +11,6 @@ import Notepad from './components/Notepad';
 import Home from './components/Home'
 import Login from './components/Login'
 
-
-
 function App() {
   const [ user, setUser ] = useState({})
   const [ flag, setFlag ] = useState(false)
@@ -35,7 +33,7 @@ function App() {
   }, [user])
 
   return (
-    <div className="App">
+    <div className="App fitWindow">
       <Routes>
         <Route path="/" element={user._id !== undefined ? <Home user={user} flag={flag} setFlag={setFlag}/> : <Login />} />
         <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
