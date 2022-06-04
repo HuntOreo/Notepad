@@ -14,6 +14,7 @@ import Login from './components/Login'
 function App() {
   const [ user, setUser ] = useState({})
   const [ flag, setFlag ] = useState(false)
+  const [ colorVisibility, setColorVisibility ] = useState('hidden')
 
   //login user IF user is not logged in
   useEffect(() => {
@@ -32,11 +33,18 @@ function App() {
 
   }, [user])
 
+  const hideColors = (e) => {
+    if (!e.target.classList.contains("colors") && !e.target.classList.contains("toggleColors")) {
+      setColorVisibility("hidden")
+    }
+
+  }
+
   return (
-    <div className="App fitWindow">
+    <div className="App fitWindow" onClick={(e) => hideColors(e)}>
       <Routes>
         <Route path="/" element={user._id !== undefined ? <Home user={user} flag={flag} setFlag={setFlag}/> : <Login />} />
-        <Route exact path='/notepads/notepad/:id' element={<Notepad />}/>
+        <Route exact path='/notepads/notepad/:id' element={<Notepad colorVisibility={colorVisibility} setColorVisibility={setColorVisibility} />}/>
       </Routes>
 
     </div>

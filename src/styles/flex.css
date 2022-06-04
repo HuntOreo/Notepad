@@ -62,7 +62,7 @@
     border: 1px solid black;
     padding: 0;
     text-align: right;
-    background-color: aquamarine;
+    background-color: #fff;
     opacity: 15%;
     border-bottom-left-radius: 10px;
     transition-duration: 0.2s;
@@ -70,7 +70,10 @@
 .noteOptions:hover {
     opacity: 100%;
     transition-duration: 0.2s;
-    box-shadow: 0px 0px 5px 1px gray;
+}
+
+.noteOptions button {
+    margin: 5px 0;
 }
 
 .col-main {
@@ -79,4 +82,20 @@
 
 .current {
     border: 2px solid red;
+}
+
+.colors {
+    padding: 2px 0;
+    position: absolute;
+    right: 0%;
+    background-color: #fff;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+}
+
+.colors button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 2px 5px;
 }

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import Note from './Note'
 import '../styles/flex.css'
 
-const Notepad = () => {
+const Notepad = ({colorVisibility, setColorVisibility}) => {
 
     const params = useParams()
     
@@ -15,6 +15,7 @@ const Notepad = () => {
     const [ note, setNote ] = useState({})
     const [ color, setColor ] = useState('#EAF3FA')
     const [ newFlag, setNewFlag ] = useState(true)
+    
 
     useEffect(() => {
         const getNotepad = async () => {
@@ -32,7 +33,8 @@ const Notepad = () => {
         if(newFlag === true) {
             const newNote = await axios.post(`/api/post/note`, {
                 notepadID: params.id,
-                body: body
+                body: body,
+                color: color
             })
 
             setNotes([...notes, newNote.data])
@@ -55,8 +57,15 @@ const Notepad = () => {
         }
     }
 
+    const startNewNote = () => {
+        const current = document.querySelector('.current')
+        current.classList.toggle('current')
+        setNewFlag(true)
+        setBody('')
+        setNote({})
+    }
+
     const deleteNote = async() => {
-        
         await axios.delete(`/api/delete/notes/note/${note._id}`)
         const newNotes = [...notes]
         for(let i = 0; i < notes.length; i++) {
@@ -69,6 +78,41 @@ const Notepad = () => {
         setNotes(newNotes)
         setBody('')
     }
+
+    const showColors = () => {
+        if(colorVisibility === 'hidden') {
+            setColorVisibility('visible')
+        } else {
+            setColorVisibility('hidden')
+        }
+    }
+
+    const chooseColor = async (e) => {
+        if(newFlag === false) {
+            const updatedNote = await axios.put(`/api/update/notes/${note._id}`, {
+                color: e.target.style.backgroundColor
+            })
+
+            setColor(e.target.style.backgroundColor)
+
+            const { data } = updatedNote
+
+            const newNotes = notes.map(item => {
+                if(item._id === data._id) {
+                    item.color = data.color
+                    return item
+                } else {
+                    return item
+                }
+            })
+
+            setNotes([...newNotes])
+        } else {
+            setColor(e.target.style.backgroundColor)
+        }
+        
+    }
+
 
     return(
         <div className='notes'>
@@ -86,8 +130,31 @@ const Notepad = () => {
                             <div className='addNoteBody'>
                                 <div className='noteOptions'>
                                     <button onClick={deleteNote}>Delete</button>
-                                    <button>New</button>
-                                    <button onClick={addNote}>add</button>
+                                    <button onClick={startNewNote}>New</button>
+                                    <button onClick={addNote}>Add</button>
+                                    <button className='toggleColors' onClick={showColors}>Color</button>
+                                    <div className='colors' style={{"visibility": `${colorVisibility}`}}>
+                                        <button onClick={async (e) => await chooseColor(e)} style={{
+                                            "border": "2px solid #f8dddd",
+                                            "backgroundColor": "#fcefef"
+                                        }}></button>
+                                        <button onClick={async (e) => await chooseColor(e)} style={{
+                                            "border": "2px solid #73d4b7",
+                                            "backgroundColor": "#a1e2cf"
+                                        }}></button>
+                                        <button onClick={async (e) => await chooseColor(e)} style={{
+                                            "border": "2px solid #d46549",
+                                            "backgroundColor": "#db7f67"
+                                        }}></button>
+                                        <button onClick={async (e) => await chooseColor(e)} style={{
+                                            "border": "2px solid #f8d83a",
+                                            "backgroundColor": "#fcefb0"
+                                        }}></button>
+                                        <button onClick={async (e) => await chooseColor(e)} style={{
+                                            "border": "2px solid #5b639a",
+                                            "backgroundColor": "#e8ebed"
+                                        }}></button>
+                                    </div>
                                 </div>
                                 <textarea style={{"backgroundColor": color}} onInput={(e) => setBody(e.target.value)} value={body}></textarea>
                             </div>
