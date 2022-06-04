@@ -26,12 +26,17 @@ const Notepad = () => {
     }, [])
 
     const addNote = async() => {
-        if(newFlag) {
+
+        if(notes.length === 0) setNewFlag(true)
+
+        if(newFlag === true) {
             const newNote = await axios.post(`/api/post/note`, {
                 notepadID: params.id,
                 body: body
             })
+
             setNotes([...notes, newNote.data])
+            
         } else {
             const updatedNote = await axios.put(`/api/update/notes/${note._id}`, {
                 body: body,
@@ -50,6 +55,21 @@ const Notepad = () => {
         }
     }
 
+    const deleteNote = async() => {
+        
+        await axios.delete(`/api/delete/notes/note/${note._id}`)
+        const newNotes = [...notes]
+        for(let i = 0; i < notes.length; i++) {
+            if(notes[i]._id === note._id) {
+                newNotes.splice(i, 1)
+            }
+        }
+
+        setNewFlag(true)
+        setNotes(newNotes)
+        setBody('')
+    }
+
     return(
         <div className='notes'>
             <div className='container'>
@@ -65,6 +85,7 @@ const Notepad = () => {
                         <div className='col-2'>
                             <div className='addNoteBody'>
                                 <div className='noteOptions'>
+                                    <button onClick={deleteNote}>Delete</button>
                                     <button>New</button>
                                     <button onClick={addNote}>add</button>
                                 </div>
