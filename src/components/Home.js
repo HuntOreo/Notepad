@@ -4,6 +4,8 @@ import axios from 'axios'
 import Notepads from './Notepads';
 import NotepadName from '../components/popups/NotepadName';
 
+import '../styles/home.css'
+
 const Home = ({ user, flag, setFlag }) => {
 
     const [ myNotepads, setMyNotepads ] = useState([])
@@ -28,25 +30,24 @@ const Home = ({ user, flag, setFlag }) => {
 
     const onClick = (e) => {
         setFlag(false)
-      }
+    }
 
     return (
         
-        <div className='wrapper'>
-            <div>
-                <div className='row'>
-                    <div className='col'>
-                        <p>Hello {user.name}</p>
-                        <Notepads notepads={myNotepads} flag={flag} setFlag={setFlag} />
-                    </div>
+        <div className='home'>
+            <div className='column-1'>
+                <div>
+                    <h2>Hello {user.name}</h2>
+                    <Notepads notepads={myNotepads} flag={flag} setFlag={setFlag} />
                 </div>
-            </div>
-            <NotepadName flag={flag} setFlag={setFlag} user={user._id} setMyNotepads={setMyNotepads} myNotepads={myNotepads}/>
-            {/* overlay */}
-            <div onClick={onClick} className="overlay" style={
-                { visibility: flag ? "visible" : "hidden",
-                    opacity: flag ? "50%" : "0",
-                    transitionDuration: "0.2s" }}>
+
+                <NotepadName flag={flag} setFlag={setFlag} user={user._id} setMyNotepads={setMyNotepads} myNotepads={myNotepads}/>
+                {/* overlay */}
+                <div onClick={onClick} className="overlay" style={
+                    { visibility: flag ? "visible" : "hidden",
+                        opacity: flag ? "50%" : "0",
+                        transitionDuration: "0.2s" }}>
+                </div>
             </div>
         </div>
     )

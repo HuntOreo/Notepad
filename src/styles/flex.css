@@ -28,6 +28,14 @@
     margin: 10px;
 }
 
+.note {
+    margin: 10px auto;
+    width: 75%;
+    border-radius: 3px;
+}
+
+.note
+
 .col-2 {
     height: inherit;
     margin: 0 10px;
@@ -45,8 +53,10 @@
     height: 100%;
     font-size: 16pt;
     padding: 20px;
-    border: none;
+    border: 1px solid black;
+    border-radius: 10px;
     transition-duration: 0.1s;
+    
 }
 
 .addNoteBody textarea:focus {
@@ -81,7 +91,8 @@
 }
 
 .current {
-    border: 2px solid red;
+    box-shadow: 0 0 2px 2px gray;
+    transition-duration: 0.1s;
 }
 
 .colors {

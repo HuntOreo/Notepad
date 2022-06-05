@@ -10,11 +10,10 @@ const Notepads = ({ notepads, flag, setFlag }) => {
     }
 
     return(
-        <div>
+        <div className='links-container'>
             <button onClick={onClick} className="addNotepadBtn">Add Notepad</button>
 
-            <div className='container'>
-                <div className="rowWrap row">
+                <div className="links">
                     {notepads.map(notepad => {
                         return (
                             <div lg="auto" className="link-hover col" key={String(notepad._id)} >
@@ -26,7 +25,6 @@ const Notepads = ({ notepads, flag, setFlag }) => {
                     })}
                 </div>
             </div>
-        </div>
     )  
     
 }
